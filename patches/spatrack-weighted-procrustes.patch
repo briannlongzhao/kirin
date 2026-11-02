@@ -1,0 +1,26 @@
+diff --git a/SpaTrackerV2/models/SpaTrackV2/models/tracker3D/spatrack_modules/utils.py b/SpaTrackerV2/models/SpaTrackV2/models/tracker3D/spatrack_modules/utils.py
+index 465c533..0de59fd 100644
+--- a/SpaTrackerV2/models/SpaTrackV2/models/tracker3D/spatrack_modules/utils.py
++++ b/SpaTrackerV2/models/SpaTrackV2/models/tracker3D/spatrack_modules/utils.py
+@@ -120,10 +120,17 @@ def weighted_procrustes_torch(X, Y, W=None, RT=None):
+     R = torch.matmul(U, Vt_corrected).inverse()  # (B, T, 3, 3)
+     t = centroid_Y - torch.matmul(R, centroid_X.unsqueeze(-1)).squeeze(-1)  # (B, T, 3)
+     w2c = torch.eye(4, device=device).unsqueeze(0).unsqueeze(0).repeat(B, T, 1, 1)
+-    if (torch.det(R) - 1).abs().max() < 1e-3:
+-        w2c[:, :, :3, :3] = R
+-    else:
+-        import pdb; pdb.set_trace()
++    det_R = torch.det(R)
++    if not torch.isfinite(R).all():
++        raise RuntimeError("Weighted Procrustes produced a non-finite rotation")
++    if (det_R - 1).abs().max() >= 1e-3:
++        # The upstream implementation stops in pdb here. Project numerical or
++        # improper estimates onto SO(3), which is the nearest proper rotation.
++        U_R, _, Vt_R = torch.linalg.svd(R)
++        correction = torch.eye(3, device=R.device, dtype=R.dtype).expand(*R.shape[:-2], 3, 3).clone()
++        correction[..., -1, -1] = torch.det(U_R @ Vt_R)
++        R = U_R @ correction @ Vt_R
++    w2c[:, :, :3, :3] = R
+     w2c[:, :, :3, 3] = t
+     try:
+         c2w_traj = torch.inverse(w2c)  # or torch.linalg.inv()

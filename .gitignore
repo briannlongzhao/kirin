@@ -218,3 +218,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local debug outputs
+debug/
+
+# Motion generation data, checkpoints and outputs placed locally
+motion_generation/dataset/AnimalMotion/
+motion_generation/dataset/AnimalMotion_test/
+motion_generation/save/
+motion_generation/animal_unified/
+motion_generation/glove/
+motion_generation/eval_logs/
