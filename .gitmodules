@@ -1,0 +1,6 @@
+[submodule "AniMer"]
+	path = AniMer
+	url = https://github.com/luoxue-star/AniMer.git
+[submodule "SpaTrackerV2"]
+	path = SpaTrackerV2
+	url = https://github.com/henry123-boy/SpaTrackerV2.git

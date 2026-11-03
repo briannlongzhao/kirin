@@ -1,0 +1,70 @@
+name: kirin
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy=1.26.4
+  - scipy
+  - ffmpeg
+  - pip
+  - setuptools<81
+  - pip:
+      # PyTorch CUDA 12.4 wheels; the conda build gives different tracker results.
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch==2.4.1+cu124
+      - torchvision==0.19.1+cu124
+      - opencv-python-headless
+      - pydantic==2.10.6
+      - plotly
+      - prettytable
+      - easydict
+      - flow_vis
+      - pillow-heif
+      - huggingface_hub
+      - PyJWT
+      - ray[default]
+      - jaxtyping
+      - xtcocotools
+      - open3d
+      - einops
+      - einx
+      - decord
+      - moviepy==1.0.0
+      - safetensors
+      - scikit-learn
+      - hydra-core
+      - omegaconf
+      - albumentations
+      - matplotlib
+      - mediapy
+      - scikit-image
+      - pycolmap==3.11.1
+      - pyceres==2.4
+      - kornia==0.8.1
+      - xformers==0.0.28
+      - timm
+      - gdown
+      - rich<15
+      - trimesh==4.12.2
+      - pytorch-lightning
+      - smplx==0.1.28
+      - pyrootutils
+      - pycocotools
+      - psutil
+      - transformers==5.0.0
+      - git+https://github.com/facebookresearch/segment-anything.git@dca509fe793f601edb92606367a655c15ac00fdf
+      - git+https://github.com/EasternJournalist/utils3d.git@d3a577acf0a9ad7e513a1416449a07b6f47d967f#egg=utils3d
+      - yacs
+      - pandas
+      # Motion generation
+      - spacy<3.9
+      - preshed==3.0.13  # 3.0.14 breaks loading en_core_web_sm
+      - https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+      - blobfile
+      - ftfy
+      - regex
+      - google-genai
+      - pyrender
+      - requests
+      - git+https://github.com/facebookresearch/sam3.git@5dd401d1c5c1d5c3eedff06d41b77af824517619
