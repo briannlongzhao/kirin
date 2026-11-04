@@ -94,7 +94,7 @@ def main():
             print(f"Using existing tracker results: {result_path}", flush=True)
         else:
             track = [
-                sys.executable, str(repo / "get_tracker_results.py"),
+                sys.executable, "-m", "reconstruction.tracker",
                 "--sequence_dir", str(args.sample_dir),
                 "--rgb_video", str(args.rgb_video),
                 "--metadata", str(args.metadata),
@@ -111,7 +111,7 @@ def main():
             subprocess.run(track, cwd=repo, check=True)
 
     reconstruct = [
-        sys.executable, str(repo / "reconstruct_video_animer.py"),
+        sys.executable, "-m", "reconstruction.animer",
         "--sequence_dir", str(args.sample_dir),
         "--out_folder", str(args.out_folder),
         "--checkpoint_path", str(args.checkpoint_path),

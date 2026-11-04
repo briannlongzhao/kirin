@@ -20,7 +20,7 @@ from mesh_animation.fit_smal_to_joints import fit_smal_to_joint_sequence
 from mesh_animation.fit_smal_to_mesh import fit_smal_to_mesh
 from mesh_animation.rodin import apply_mask, generate_mesh
 from mesh_animation.skinning import skinning
-from smal_models.custom_smal import SMAL_PARENTS, load_smal_model
+from smal.smal import SMAL_PARENTS, load_smal_model
 
 # Tail joints after the first tail joint are not driven by the motion.
 DISABLED_JOINTS = [26, 27, 28, 29, 30, 31]

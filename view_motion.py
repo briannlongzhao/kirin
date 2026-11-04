@@ -22,7 +22,7 @@ import trimesh
 import viser
 import viser.transforms as tf
 
-from smal_models.custom_smal import SMAL_PARENTS
+from smal.smal import SMAL_PARENTS
 
 SMAL_EDGES = [(i, p) for i, p in enumerate(SMAL_PARENTS) if p != -1]
 

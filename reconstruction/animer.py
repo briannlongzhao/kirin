@@ -17,9 +17,9 @@ from AniMer.amr.utils import recursive_to
 from AniMer.amr.utils.renderer import Renderer, cam_crop_to_full
 from AniMer.amr.utils.geometry import perspective_projection
 from AniMer.amr.datasets.vitdet_dataset import ViTDetDataset
-from smal_models.custom_amr import load_amr
-from smal_models.custom_smal import SMAL_TO_VIT_POSE
-from utils import get_all_sequence_dirs, draw_keypoints
+from smal.amr import load_amr
+from smal.smal import SMAL_TO_VIT_POSE
+from reconstruction.utils import get_all_sequence_dirs, draw_keypoints
 
 from pytorch3d.transforms import rotation_6d_to_matrix, matrix_to_rotation_6d
 
