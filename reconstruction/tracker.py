@@ -26,15 +26,13 @@ import torch.nn.functional as F
 from scipy.spatial.transform import Rotation
 from scipy.optimize import minimize
 
-# from utils import get_all_sequence_dirs
 
 try:
     import yt_dlp
-except ImportError:
-    print("Warning: yt-dlp not installed. Video download functionality will be disabled.")
+except ImportError:  # only needed to download full-frame videos from YouTube
     yt_dlp = None
 
-sys.path.insert(0, "SpaTrackerV2")
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "SpaTrackerV2"))
 from models.SpaTrackV2.models.vggt4track.models.vggt_moe import VGGT4Track
 from models.SpaTrackV2.models.vggt4track.utils.load_fn import preprocess_image
 from models.SpaTrackV2.models.vggt4track.utils.pose_enc import pose_encoding_to_extri_intri

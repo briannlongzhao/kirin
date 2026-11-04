@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.spatial.transform import Rotation
 
-from smal_models.custom_smal import SMAL_PARENTS
+from smal.smal import SMAL_PARENTS
 
 SMAL_EDGES = [(i, p) for i, p in enumerate(SMAL_PARENTS) if p != -1]
 JOINT_COLOR = np.array([0.2, 0.7, 1.0])
